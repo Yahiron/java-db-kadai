@@ -13,6 +13,7 @@ public class Posts_Chapter07 {
 
 		Connection con = null;
 		Statement statement = null;
+		//		Statement statement = con.createStatement();
 
 		//		String postdate = """
 		//				INSERT INTO posts (user_id, posted_at, post_content, likes) VALUES
@@ -33,6 +34,7 @@ public class Posts_Chapter07 {
 			System.out.println("データベース接続成功:" + con);
 
 			//SQLクリエを準備する
+			statement = con.createStatement();
 			String sql = """
 						INSERT INTO posts (user_id, posted_at, post_content, likes) VALUES
 					  (1003, '2023-02-08', '昨日の夜は徹夜でした・・', 13),
@@ -42,7 +44,7 @@ public class Posts_Chapter07 {
 					  (1002, '2023-02-10', '明日から連休ですね！', 20);
 					""";
 
-			statement = con.prepareStatement(sql);
+			//			statement = con.prepareStatement(sql);
 
 			// 投稿データを追加
 			System.out.println("レコード追加を実行します");
@@ -62,7 +64,7 @@ public class Posts_Chapter07 {
 				Date postedAt = result.getDate("posted_at");
 				String postContent = result.getString("post_content");
 				int likeCount = result.getInt("likes");
-				
+
 				System.out.println(
 						result.getRow() + "件目：投稿日時=" + postedAt + "/投稿内容=" + postContent + "/いいね数=" + likeCount);
 
